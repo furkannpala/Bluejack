@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="">
+    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="Random classes update in methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BluejackGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BluejackGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDeck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlayerDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerDeck.java" afterDir="false" />
     </list>
@@ -80,6 +78,15 @@
       <option name="presentableId" value="Default" />
       <updated>1702055579780</updated>
     </task>
+    <task id="LOCAL-00001" summary="Random classes update in methods">
+      <option name="closed" value="true" />
+      <created>1702069775976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702069775976</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -92,6 +99,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Random classes update in methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Random classes update in methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

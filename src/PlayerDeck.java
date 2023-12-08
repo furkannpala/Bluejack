@@ -20,11 +20,13 @@ public class PlayerDeck {
 
     public Card[] getHand() {
         Card[] hand = new Card[4];
-        Random r = new Random();
-        for (int i = 0; i < 4; i++) {
-            int randomIndex = new Random().nextInt(size);
-            hand[i] = cards[randomIndex];
-            removeCard(randomIndex);
+        if(size > 0) {
+            Random r = new Random();
+            for (int i = 0; i < 4; i++) {
+                int randomIndex = new Random().nextInt(size);
+                 hand[i] = cards[randomIndex];
+                removeCard(randomIndex);
+            }
         }
         return hand;
     }

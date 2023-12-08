@@ -13,6 +13,7 @@ public class GameDeck {
     private void initializeDeck() {
         String[] colors = {"blue", "yellow", "red", "green"};
         Random r = new Random();
+
         for (int i = 0; i < colors.length; i++) {
             for (int j = 1; j <= 10; j++) {
                 addCard(new Card(colors[i], j, "+"));
@@ -27,14 +28,16 @@ public class GameDeck {
         }
 
         for (int i = 0; i < 2; i++) {
-            if (r.nextDouble() < 0.8) {
-                String color = colors[new Random().nextInt(colors.length)];
-                int value = new Random().nextInt(6) + 1;
-                String sign = (new Random().nextBoolean()) ? "+" : "-";
-                addCard(new Card(color, value, sign));
-            } else {
-                String specialType = (r.nextDouble() < 0.2) ? "flip" : "double";
-                addCard(new Card("", 0, specialType));
+            if(size > 0) {
+                if (r.nextDouble() < 0.8) {
+                    String color = colors[new Random().nextInt(colors.length)];
+                    int value = new Random().nextInt(6) + 1;
+                    String sign = (new Random().nextBoolean()) ? "+" : "-";
+                    addCard(new Card(color, value, sign));
+                } else {
+                    String specialType = (r.nextDouble() < 0.2) ? "flip" : "double";
+                    addCard(new Card("", 0, specialType));
+                }
             }
         }
 

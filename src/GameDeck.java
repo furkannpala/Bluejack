@@ -1,11 +1,11 @@
 import java.util.Random;
 
 public class GameDeck {
-    private Card[] cards;
+    private final Card[] cards;
     private int size;
 
     public GameDeck() {
-        this.cards = new Card[56]; // 4 colors * 10 values * 4 sets + 3 random cards + 2 special cards
+        this.cards = new Card[46]; // 4 colors 10 values + 3 random cards + 2 special cards
         this.size = 0;
         initializeDeck();
     }

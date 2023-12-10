@@ -43,7 +43,6 @@ public class BluejackGame {
             }
         }
 
-        scanner.close();
     }
 
     private void userTurn(Scanner scanner) {
@@ -66,6 +65,7 @@ public class BluejackGame {
             // User stands, add drawn card to the total score
             userScore += userDrawnCard.getValue();
         }
+
     }
 
     private void playUserCard(Scanner scanner) {
@@ -83,9 +83,10 @@ public class BluejackGame {
 
         if (cardNumber >= 1 && cardNumber <= 4) {
             // Play the selected card
-            Card playedCard = userHand[cardNumber - 1];
-            System.out.println("User plays: " + playedCard);
-            userScore += playedCard.getValue();
+            userDeck.playCard(cardNumber - 1);
+            System.out.println("User plays: " + userHand[cardNumber - 1]);
+        } else {
+            System.out.println("Enter a Valid Number");
         }
     }
 
@@ -96,17 +97,10 @@ public class BluejackGame {
         Card computerDrawnCard = gameDeck.drawCard();
         System.out.println("Computer draws a card: " + computerDrawnCard);
 
-        // Computer stands if the current score is 18 or higher
-        if (computerScore < 18) {
-            // Draw additional cards
-            Card[] computerHand = computerDeck.getHand();
-            for (int i = 0; i < 4; i++) {
-                computerScore += computerHand[i].getValue();
-            }
-            System.out.println("Computer plays: " + computerDeck);
-        } else {
-            System.out.println("Computer stands.");
-        }
+        // Add the drawn card to the computer's hand
+        computerDeck.addCard(computerDrawnCard);
+        computerScore += computerDrawnCard.getValue();
+
     }
 
     private boolean isGameOver() {

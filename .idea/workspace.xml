@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Bluejack:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="Random classes update in methods">
+    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="Preventing attempts to select random index">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BluejackGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BluejackGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDeck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlayerDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerDeck.java" afterDir="false" />
     </list>
@@ -27,12 +33,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/BluejackGame.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Card.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/GameDeck.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/PlayerDeck.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2ZGk0OIUJgLErEPOf91SbCiWtQs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -41,18 +53,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BluejackGame.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "C:/Users/fpala/IdeaProjects/Bluejack/src/Main.java",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BluejackGame.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fpala/IdeaProjects/Bluejack/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BluejackGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BluejackGame" />
@@ -86,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702069775976</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Preventing attempts to select random index">
+      <option name="closed" value="true" />
+      <created>1702070722544</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702070722544</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,16 +125,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Random classes update in methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Random classes update in methods" />
+    <MESSAGE value="Preventing attempts to select random index" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preventing attempts to select random index" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GameDeck.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/BluejackGame.java</url>
           <line>2</line>

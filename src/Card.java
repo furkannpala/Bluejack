@@ -19,6 +19,10 @@ public class Card {
         }
     }
 
+    public String getColor() {
+        return color;
+    }
+
 
     public String toString() {
         return color + " " + sign + value ;

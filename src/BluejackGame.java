@@ -45,6 +45,15 @@ public class BluejackGame {
 
     }
 
+    public boolean blueCards(Card[] cards) {
+        for (int i = 0; i < cards.length; i++) {
+            if(!"blue".equals(cards[i].getColor())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void userTurn(Scanner scanner) {
         System.out.println("\nUser's Turn:");
 
@@ -66,6 +75,12 @@ public class BluejackGame {
         } else {
             // User stands, add drawn card to the total score
             userScore += userDrawnCard.getValue();
+        }
+
+        if(userDeck.getTotalScore() == 20 && blueCards(userDeck.getCards())) {
+            userScore = 20;
+            System.out.println("User's total score is 20 with only blue cards!");
+            return;
         }
 
     }
@@ -114,6 +129,10 @@ public class BluejackGame {
         // Add the drawn card to the computer's hand
         computerDeck.addCard(computerDrawnCard);
         computerScore += computerDrawnCard.getValue();
+        if(computerDeck.getTotalScore() == 20 && blueCards(computerDeck.getCards())) {
+            computerScore = 20;
+            System.out.println("Computer's total score is 20 with only blu cards!");
+        }
 
     }
 
@@ -160,10 +179,22 @@ public class BluejackGame {
             BluejackGame bluejackGame = new BluejackGame();
             bluejackGame.startGame();
 
-            if (bluejackGame.userScore > 20 || bluejackGame.computerScore == 20) {
+            if (totalUserScore > 20 && totalComputerScore > 20) {
                 totalComputerScore++;
-            } else if (bluejackGame.computerScore > 20 || bluejackGame.userScore == 20) {
                 totalUserScore++;
+            } else if (totalUserScore > 20) {
+                totalComputerScore++;
+            } else if (totalComputerScore > 20) {
+                totalUserScore++;
+            } else {
+                if (totalUserScore > totalComputerScore) {
+                    totalUserScore++;
+                } else if (totalUserScore < totalComputerScore) {
+                    totalComputerScore++;
+                } else {
+                    totalComputerScore++;
+                    totalUserScore++;
+                }
             }
             System.out.println("---Total Score---");
             System.out.println("User: " + totalUserScore );

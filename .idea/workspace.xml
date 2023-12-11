@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="Preventing attempts to select random index">
+    <list default="true" id="6e70a752-c008-42c8-8174-f5a7ca37f715" name="Changes" comment="Fix in getHand function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BluejackGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BluejackGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDeck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayerDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerDeck.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702070722544</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix in getHand function">
+      <option name="closed" value="true" />
+      <created>1702200242469</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702200242469</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,7 +132,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Random classes update in methods" />
     <MESSAGE value="Preventing attempts to select random index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Preventing attempts to select random index" />
+    <MESSAGE value="Fix in getHand function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix in getHand function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

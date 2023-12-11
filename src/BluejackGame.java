@@ -9,7 +9,7 @@ public class BluejackGame {
 
     public BluejackGame() {
         gameDeck = new GameDeck();
-        computerDeck = new PlayerDeck(drawInitialCards());
+        computerDeck = new PlayerDeck(drawInitialCards() );
         userDeck = new PlayerDeck(drawInitialCards());
         computerScore = 0;
         userScore = 0;
@@ -61,6 +61,8 @@ public class BluejackGame {
 
         if (choice == 'p') {
             playUserCard(scanner);
+            userScore += userDrawnCard.getValue();
+
         } else {
             // User stands, add drawn card to the total score
             userScore += userDrawnCard.getValue();
@@ -78,15 +80,27 @@ public class BluejackGame {
             System.out.println((i + 1) + ". " + userHand[i]);
         }
 
-        System.out.print("Enter the card number: ");
-        int cardNumber = scanner.nextInt();
 
-        if (cardNumber >= 1 && cardNumber <= 4) {
-            // Play the selected card
-            userDeck.playCard(cardNumber - 1);
-            System.out.println("User plays: " + userHand[cardNumber - 1]);
-        } else {
-            System.out.println("Enter a Valid Number");
+        while (true) {
+            System.out.print("Enter the card number: ");
+            int cardNumber = scanner.nextInt();
+
+            if (cardNumber >= 1 && cardNumber <= 4) {
+                Card selectedCard = userHand[cardNumber - 1];
+
+                userDeck.playCard(cardNumber - 1);
+                System.out.println("User plays: " + selectedCard);
+                userScore += selectedCard.getValue();
+                System.out.println("Remaining cards in your hand: ");
+                for(int i = 0; i < 3; i++) {
+                    System.out.println((i+1) + "." + userHand[i + 1]);
+                }
+                break;
+
+            } else {
+                System.out.println("Enter a Valid Number");
+
+            }
         }
     }
 
@@ -133,9 +147,29 @@ public class BluejackGame {
                 System.out.println("It's a tie!");
             }
         }
+
     }
     public static void main(String[] args) {
-        BluejackGame bluejackGame = new BluejackGame();
-        bluejackGame.startGame();
+        int totalUserScore = 0;
+        int totalComputerScore = 0;
+
+        while(true) {
+           if (totalUserScore == 3 || totalComputerScore == 3) {
+               break;
+           }
+            BluejackGame bluejackGame = new BluejackGame();
+            bluejackGame.startGame();
+
+            if (bluejackGame.userScore > 20 || bluejackGame.computerScore == 20) {
+                totalComputerScore++;
+            } else if (bluejackGame.computerScore > 20 || bluejackGame.userScore == 20) {
+                totalUserScore++;
+            }
+            System.out.println("---Total Score---");
+            System.out.println("User: " + totalUserScore );
+            System.out.println("Computer: " + totalComputerScore);
+
+
+        }
     }
 }

@@ -52,8 +52,6 @@ public class BluejackGame {
             // User's turn
             userTurn(scanner);
 
-            // Computer's turn
-            computerTurn();
 
             // Check game end conditions
             if (isGameOver()) {
@@ -75,26 +73,26 @@ public class BluejackGame {
 
     private void userTurn(Scanner scanner) {
         System.out.println("\nUser's Turn:");
-
-        // Draw a card from the game deck
         Card userDrawnCard = gameDeck.drawCard();
-        System.out.println("User draws a card: " + userDrawnCard);
 
-        // Display user's hand
-        System.out.println("User's Hand: " + userDeck);
-
-        // Ask user to stand or play a card
-        System.out.print("Do you want to stand (s) or play a card (p)? ");
+        System.out.print("Do you want to end turn (e),stand (s) or play a card (p)? ");
         char choice = scanner.next().charAt(0);
 
         if (choice == 'p') {
             playUserCard(scanner);
-            userScore += userDrawnCard.getValue();
+            computerTurn();
 
-        } else {
+        } else if (choice == 'e') {
+            computerTurn();
+        } else if (choice == 's') {
             // User stands, add drawn card to the total score
             userScore += userDrawnCard.getValue();
+            System.out.println("User draws a card: " + userDrawnCard);
+            System.out.println("User's Hand: " + userDeck);
+            computerTurn();
         }
+
+
 
         if (userDeck.getTotalScore() == 20 && blueCards(userDeck.getCards())) {
             userScore = 20;

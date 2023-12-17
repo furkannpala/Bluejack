@@ -1,5 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BluejackGame {
@@ -10,7 +13,6 @@ public class BluejackGame {
     private int userScore;
     private int totalUserScore;
     private int totalComputerScore;
-
     private int Max_History_Size = 10;
     private String[] gameHistory;
     private int[] historyUserScores;
@@ -20,16 +22,15 @@ public class BluejackGame {
     private static String Game_History_File_Path = "game_history.txt";
 
 
+
     public BluejackGame() {
         gameDeck = new GameDeck();
         computerDeck = new PlayerDeck(drawInitialCards());
         userDeck = new PlayerDeck(drawInitialCards());
         computerScore = 0;
         userScore = 0;
-        gameHistory = new String[Max_History_Size];
         historyUserScores = new int[Max_History_Size];
         historyComputerScores = new int[Max_History_Size];
-        historyIndex = 0;
         gameCounter = 1;
 
     }
@@ -77,6 +78,7 @@ public class BluejackGame {
 
         System.out.print("Do you want to end turn (e),stand (s) or play a card (p)? ");
         char choice = scanner.next().charAt(0);
+        Scanner sc = new Scanner(System.in);
 
         if (choice == 'p') {
             playUserCard(scanner);
@@ -89,7 +91,14 @@ public class BluejackGame {
             userScore += userDrawnCard.getValue();
             System.out.println("User draws a card: " + userDrawnCard);
             System.out.println("User's Hand: " + userDeck);
-            computerTurn();
+            System.out.println("Would you like to play a card (y/n): ");
+            char newChoice = sc.next().charAt(0);
+            if (newChoice == 'y') {
+                playUserCard(scanner);
+                computerTurn();
+            } else if (newChoice == 'n') {
+                computerTurn();
+            }
         }
 
 
@@ -187,17 +196,12 @@ public class BluejackGame {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
 
             int totalUserScore = 0;
             int totalComputerScore = 0;
 
-            try {
-                BluejackGame.readGameHistoryFromFile();
-            } catch (IOException e) {
-                System.out.println("Error reading from file: " + e.getMessage());
-            }
 
 
             while (true) {
@@ -220,61 +224,97 @@ public class BluejackGame {
                 System.out.println("Computer: " + totalComputerScore);
             }
     }
-    private void addGameRecord(String playerName, int totalUserScore, int totalComputerScore) {
+
+    private void addGameRecord(String playerName, int totalUserScore, int totalComputerScore) throws FileNotFoundException {
         if (totalUserScore == 3 || totalComputerScore == 3) {
+            String record = String.format("Player Score %d - Computer Score: %d, %s", totalUserScore, totalComputerScore, getCurrentDate());
 
-            String record = String.format("Player Score: %d - Computer Score: %d, %s", totalUserScore, totalComputerScore, getCurrentDate());
+            String[] history = readGameRecords();
 
-            if (historyIndex == Max_History_Size) {
-                gameHistory[historyIndex % Max_History_Size] = null;
+            if(countHistory(Game_History_File_Path) == Max_History_Size) {
+                String[] newHistory = new String[Max_History_Size];
+
+                for(int i=0; i<Max_History_Size-1; i++) {
+                    newHistory[i] = history[i+1];
+                }
+                newHistory[Max_History_Size - 1] = record;
+
+                writeGameRecordToFile(newHistory);
+            } else {
+                int historyLength = history.length;
+                int newHistoryLength = historyLength + 1;
+
+                String[] newHistory = new String[newHistoryLength];
+
+                for(int i=0; i<historyLength; i++) {
+                    newHistory[i] = history[i];
+                }
+
+                newHistory[newHistoryLength-1] = record;
+
+                writeGameRecordToFile(newHistory);
             }
-
-            // Yeni oyun sonucunu ekleyin
-            gameHistory[historyIndex % Max_History_Size] = record;
-            historyIndex++;
-
-            writeGameRecordToFile(record);
         }
     }
-    private void writeGameRecordToFile(String record) {
-        try (FileWriter fileWriter = new FileWriter(Game_History_File_Path, true)) {
+
+    private static void writeGameRecordToFile(String[] gameHistory) {
+        try (FileWriter fileWriter = new FileWriter(Game_History_File_Path, false)) {
+
+            for(int i = 0; i < gameHistory.length; i++) {
+                String record = gameHistory[i];
                 fileWriter.write(record);
-                fileWriter.write(System.lineSeparator());
-                fileWriter.flush();
+
+                if(i != gameHistory.length - 1) {
+                    fileWriter.write(System.lineSeparator());
+                }
+            }
+            fileWriter.flush();
         } catch (IOException e) {
             throw new RuntimeException("Error writing to file: " + e.getMessage(), e);
         }
-
     }
 
+    public static String[] readGameRecords() throws FileNotFoundException {
+        try {
+            int length = countHistory(Game_History_File_Path);
+            String[] historyArray = new String[length];
+
+            Scanner scanner = new Scanner(new File(Game_History_File_Path));
+
+            int index = 0;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println(line);
+                historyArray[index] = line;
+                index++;
+            }
+            return historyArray;
+        } catch (Exception e) {
+            System.out.println(String.format("Error during reading game records from '%s' !!", Game_History_File_Path));
+            return null;
+        }
+    }
+
+    private static int countHistory(String filePath) throws FileNotFoundException {
+        int count = 0;
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNextLine()) {
+                scanner.nextLine();
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void printGameRecords(String[] history) {
+        System.out.println("Game Records: ");
+        for(String record: history) {
+            System.out.println(record);
+        }
+    }
     private String getCurrentDate() {
         long currentTime = System.currentTimeMillis();
         return new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(currentTime));
 
     }
-    public void printGameRecords(int n) {
-
-        int startIndex = historyIndex - n;
-        if(startIndex < 0) {
-            startIndex = 0;
-        }
-        System.out.println("Game Records: ");
-        for(int i = startIndex; i < historyIndex; i++) {
-            int adjustedIndex = i % Max_History_Size;
-            if(gameHistory[adjustedIndex] != null) {
-                System.out.println(gameHistory[adjustedIndex]);
-            }
-        }
-    }
-
-    private static void readGameHistoryFromFile() throws IOException {
-        try (Scanner scanner = new Scanner(Game_History_File_Path)) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                System.out.println(line);
-            }
-
-        }
-    }
-
 }

@@ -3,10 +3,14 @@ import java.util.Random;
 public class GameDeck {
     private final Card[] cards;
     private int size;
+    private boolean flipDrawn;
+    private boolean doubleDrawn;
 
     public GameDeck() {
         this.cards = new Card[46]; // 4 colors 10 values + 3 random cards + 2 special cards
         this.size = 0;
+        this.flipDrawn = false;
+        this.doubleDrawn = false;
         initializeDeck();
     }
 
@@ -28,7 +32,7 @@ public class GameDeck {
         }
 
         for (int i = 0; i < 2; i++) {
-            if(size > 0) {
+            if (size > 0) {
                 if (r.nextDouble() < 0.8) {
                     String color = colors[new Random().nextInt(colors.length)];
                     int value = new Random().nextInt(6) + 1;
@@ -36,11 +40,10 @@ public class GameDeck {
                     addCard(new Card(color, value, sign));
                 } else {
                     String specialType = (r.nextDouble() < 0.2) ? "flip" : "double";
-                    addCard(new Card("", 0, specialType));
+                    addCard(new Card("", 0,specialType));
                 }
             }
         }
-
         shuffle();
     }
 

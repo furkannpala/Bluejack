@@ -18,7 +18,6 @@ public class Card {
             return value;
         }
     }
-
     public String getColor() {
         return color;
     }

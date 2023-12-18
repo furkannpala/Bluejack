@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class BluejackGame {
@@ -11,14 +10,8 @@ public class BluejackGame {
     private PlayerDeck userDeck;
     private int computerScore;
     private int userScore;
-    private int totalUserScore;
-    private int totalComputerScore;
     private int Max_History_Size = 10;
-    private String[] gameHistory;
-    private int[] historyUserScores;
-    private int[] historyComputerScores;
-    private int historyIndex;
-    private int gameCounter;
+
     private static String Game_History_File_Path = "game_history.txt";
 
 
@@ -29,9 +22,6 @@ public class BluejackGame {
         userDeck = new PlayerDeck(drawInitialCards());
         computerScore = 0;
         userScore = 0;
-        historyUserScores = new int[Max_History_Size];
-        historyComputerScores = new int[Max_History_Size];
-        gameCounter = 1;
 
     }
 
@@ -50,11 +40,8 @@ public class BluejackGame {
         while (true) {
             displayGameStatus();
 
-            // User's turn
             userTurn(scanner);
 
-
-            // Check game end conditions
             if (isGameOver()) {
                 displayGameResult();
                 break;
@@ -62,7 +49,6 @@ public class BluejackGame {
         }
 
     }
-
     public boolean blueCards(Card[] cards) {
         for (int i = 0; i < cards.length; i++) {
             if (!"blue".equals(cards[i].getColor())) {
@@ -112,6 +98,7 @@ public class BluejackGame {
     }
 
     private void playUserCard(Scanner scanner) {
+        Card userDrawnCard = gameDeck.drawCard();
         // Get user's hand
         Card[] userHand = userDeck.getHand();
         System.out.println("Choose a card to play:");
@@ -157,7 +144,7 @@ public class BluejackGame {
         computerScore += computerDrawnCard.getValue();
         if (computerDeck.getTotalScore() == 20 && blueCards(computerDeck.getCards())) {
             computerScore = 20;
-            System.out.println("Computer's total score is 20 with only blu cards!");
+            System.out.println("Computer's total score is 20 with only blue cards!");
         }
 
     }
@@ -170,6 +157,7 @@ public class BluejackGame {
         System.out.println("\nCurrent Status:");
         System.out.println("User's Score: " + userScore);
         System.out.println("Computer's Score: " + computerScore);
+        System.out.println("User's Hand: " + userDeck);
     }
 
     private void displayGameResult() {

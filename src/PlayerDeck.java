@@ -5,7 +5,7 @@ public class PlayerDeck {
     private int totalScore;
 
     public PlayerDeck(Card[] initialCards) {
-        this.cards = new Card[4];
+        this.cards = new Card[10];
         this.size = 0;
         this.totalScore = 0;
 
@@ -65,11 +65,13 @@ public class PlayerDeck {
 
 
     public String toString() {
-        StringBuilder deckString = new StringBuilder();
+        String deckString = "";
         for (int i = 0; i < size; i++) {
-            deckString.append(cards[i]).append(", ");
+            deckString += cards[i];
+            if (i < size - 1) {
+                deckString += ", ";
+            }
         }
-        return deckString.toString();
+        return deckString;
     }
 }
-

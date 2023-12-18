@@ -3,20 +3,17 @@ import java.util.Random;
 public class GameDeck {
     private final Card[] cards;
     private int size;
-    private boolean flipDrawn;
-    private boolean doubleDrawn;
 
     public GameDeck() {
-        this.cards = new Card[46]; // 4 colors 10 values + 3 random cards + 2 special cards
+        this.cards = new Card[60]; // 4 colors 10 values(4*10/Game Decks) + 2*10(Player Decks)
         this.size = 0;
-        this.flipDrawn = false;
-        this.doubleDrawn = false;
         initializeDeck();
     }
 
     private void initializeDeck() {
         String[] colors = {"blue", "yellow", "red", "green"};
         Random r = new Random();
+        Random innerrandom = new Random();
 
         for (int i = 0; i < colors.length; i++) {
             for (int j = 1; j <= 10; j++) {
@@ -33,20 +30,24 @@ public class GameDeck {
 
         for (int i = 0; i < 2; i++) {
             if (size > 0) {
-                if (r.nextDouble() < 0.8) {
+                if (r.nextDouble() > 0.2) {
                     String color = colors[new Random().nextInt(colors.length)];
                     int value = new Random().nextInt(6) + 1;
                     String sign = (new Random().nextBoolean()) ? "+" : "-";
                     addCard(new Card(color, value, sign));
-                } else {
-                    String specialType = (r.nextDouble() < 0.2) ? "flip" : "double";
-                    addCard(new Card("", 0,specialType));
+                } else if (r.nextDouble() <= 0.2) {
+                    if (innerrandom.nextDouble() <= 0.5) {  // %50 flip %50 double
+                        String specialType = "flip";
+                        addCard(new Card("", 0, specialType));
+                    } else if (innerrandom.nextDouble() > 0.5) {
+                        String specialType = "double";
+                        addCard(new Card("", 0, specialType));
+                    }
                 }
             }
         }
         shuffle();
     }
-
     private void shuffle() {
         Random random = new Random();
         for (int i = size - 1; i > 0; i--) {

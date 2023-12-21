@@ -73,7 +73,6 @@ public class BluejackGame {
         } else if (choice == 'e') {
             computerTurn();
         } else if (choice == 's') {
-            // User stands, add drawn card to the total score
             userScore += userDrawnCard.getValue();
             System.out.println("User draws a card: " + userDrawnCard);
             System.out.println("User's Hand: " + userDeck);
@@ -99,11 +98,11 @@ public class BluejackGame {
 
     private void playUserCard(Scanner scanner) {
         Card userDrawnCard = gameDeck.drawCard();
-        // Get user's hand
+
         Card[] userHand = userDeck.getHand();
         System.out.println("Choose a card to play:");
 
-        // Display user's hand
+
         for (int i = 0; i < 4; i++) {
             System.out.println((i + 1) + ". " + userHand[i]);
         }
@@ -135,11 +134,9 @@ public class BluejackGame {
     private void computerTurn() {
         System.out.println("\nComputer's Turn:");
 
-        // Draw a card from the game deck
         Card computerDrawnCard = gameDeck.drawCard();
         System.out.println("Computer draws a card: " + computerDrawnCard);
 
-        // Add the drawn card to the computer's hand
         computerDeck.addCard(computerDrawnCard);
         computerScore += computerDrawnCard.getValue();
         if (computerDeck.getTotalScore() == 20 && blueCards(computerDeck.getCards())) {
@@ -292,13 +289,6 @@ public class BluejackGame {
             }
         }
         return count;
-    }
-
-    public static void printGameRecords(String[] history) {
-        System.out.println("Game Records: ");
-        for(String record: history) {
-            System.out.println(record);
-        }
     }
     private String getCurrentDate() {
         long currentTime = System.currentTimeMillis();

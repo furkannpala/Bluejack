@@ -22,9 +22,16 @@ public class GameDeck {
         }
 
         for (int i = 0; i < 3; i++) {
+            Random random = new Random();
             String color = colors[new Random().nextInt(colors.length)];
             int value = new Random().nextInt(6) + 1;
-            String sign = (new Random().nextBoolean()) ? "+" : "-";
+            boolean isPositive = random.nextBoolean();
+            String sign;
+            if (isPositive) {
+                sign = "+";
+            } else {
+                sign = "-";
+            }
             addCard(new Card(color, value, sign));
         }
 
